@@ -1,0 +1,36 @@
+#abrir o gazebo 
+ros2 launch my_gazebo pista-23B.launch.py
+
+#tópicos disponíveis para ROS
+ros2 topic list
+
+#"escutar" os dados dos sensores que estão chegando via ROS
+ros2 topic echo nome_do_topico
+
+#abrir a câmera do robo 
+ros2 run rqt_image_view rqt_image_view
+
+#controlar o robo
+ros2 run turtlebot3_teleop teleop_keyboard
+
+#para ver as mensagens sendo publicadas em um tópico
+ros2 topic echo {nome_do_topico}
+
+#para ver o formato de uma mensagem
+ros2 interface show {nome_do_pacote}/msg/{nome_da_mensagem}
+
+#para a mensagem Twist
+"""
+A saída mostra que Twist possui dois campos do tipo Vector3: linear e angular.
+Cada Vector3 contém três float64: x, y e z. linear representa a velocidade linear
+do robô e angular representa a velocidade angular do robô.
+"""
+ros2 interface show geometry_msgs/msg/Twist
+
+
+#Criar um pacote 
+#pkg create -> subcomando para criar um novo pacote
+#-build-type ament_python  -> define que o pacote será em python
+#my_package -> nome do pacote
+#dependencies rclpy std_msgs geometry_msgs  -> dependencias declaradas
+ros2 pkg create --build-type ament_python my_package --dependencies rclpy std_msgs geometry_msgs
