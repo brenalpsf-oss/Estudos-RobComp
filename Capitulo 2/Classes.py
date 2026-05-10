@@ -48,7 +48,7 @@ class Caminhao(Carro):
         self.capacidade_carga = capacidade_carga  # Atributo adicional
 
     def carregar(self, carga: int):
-        if carga &lt;= self.capacidade_carga:
+        if carga &lt:= self.capacidade_carga:
             print(f"Carregando {carga} toneladas no caminhão.")
         else:
             print("Carga excede a capacidade máxima do caminhão!")
