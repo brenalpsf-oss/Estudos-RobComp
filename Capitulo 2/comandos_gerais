@@ -34,3 +34,29 @@ ros2 interface show geometry_msgs/msg/Twist
 #my_package -> nome do pacote
 #dependencies rclpy std_msgs geometry_msgs  -> dependencias declaradas
 ros2 pkg create --build-type ament_python my_package --dependencies rclpy std_msgs geometry_msgs
+
+#imports do ROS2
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import ReliabilityPolicy, QoSProfile # Para lidar com a rede do lab
+from geometry_msgs.msg import Twist, Point, Pose, Vector3
+from robcomp_util.odom import Odom            # Para ler X, Y e Yaw direto
+from robcomp_util.base_action import Acao    # Para criar estados de ação
+from robcomp_interfaces.msg import OrquestratorMSG 
+from sensor_msgs.msg import LaserScan        # Para o Lidar (evitar obstáculos)
+from sensor_msgs.msg import Image            # Para a Câmera
+from nav_msgs.msg import Odometry            # Odometria bruta (se não usar a classe Odom)
+import math
+import cv2                                   # OpenCV para processamento de imagem
+from cv_bridge import CvBridge               # Traduz imagem do ROS para OpenCV
+import numpy as np
+
+# DICA: Remendo para erro de versão do NumPy comum no laboratório
+np.float = float
+
+#Sempre que precisar converter a rotação do robô para graus/radianos (Yaw).
+from tf_transformations import euler_from_quaternion
+
+#Para ver os campos de uma mensagem específica
+#ros2 interface show robcomp_interfaces/msg/OrquestratorMSG
+ros2 interface show nome_do_pacote/msg/NomeDaMensagem
