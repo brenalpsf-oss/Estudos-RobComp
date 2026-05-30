@@ -4,7 +4,7 @@ from rclpy.node import Node
 from rclpy.qos import ReliabilityPolicy, QoSProfile
 from geometry_msgs.msg import Twist, Point
 # Importar a classe da acao do arquivo, como por exemplo
-from robcomp_util.base_action import Acao
+from robcomp_util import Acao
 # Adicione aqui os imports necessários
 
 class BaseControlNode(Node): # Mude o nome da classe
